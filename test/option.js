@@ -118,14 +118,14 @@ exports.option = {
 
     'when testing traverse with Some should return correct value': λ.check(
         function(a) {
-            return a.traverse(function (x) { return Identity.of(x); }, Identity).x.x === a.x;
+            return a.traverse(Identity.of, Identity).x.x === a.x;
         },
         [λ.someOf(Number)]
     ),
 
     'when testing traverse with None should return correct value': λ.check(
         function(a) {
-            return a.traverse(function (x) { return Identity.of(x); }, Identity).x === Option.None;
+            return a.traverse(Identity.of, Identity).x === Option.None;
         },
         [λ.noneOf()]
     ),
